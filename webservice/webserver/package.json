@@ -1,0 +1,17 @@
+{
+  "name": "mex-web-server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node /src/webserver/bin/www"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "body-parser": "~1.14.1",
+    "morgan": "~1.6.1",
+    "compression": "~1.6.0",
+
+    "debug": "~2.0.0",
+    "lodash": "~3.10.1"
+  }
+}

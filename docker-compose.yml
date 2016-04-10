@@ -1,0 +1,25 @@
+# store:
+#   build: ./store
+#   dockerfile: ./Dockerfile.store
+#   volumes:
+#     - ./storelogs:/var/logs
+
+webapiservice:
+  volumes:
+    - ./webapiservice/webapiserver:/src/webapiserver
+    - ./infrastructure:/src/infrastructure
+  dockerfile: ./Dockerfile.webapiserver
+  ports:
+    - "0.0.0.0:3000:3000"
+  build: ./webapiservice
+  # links:
+  #   - store
+
+webservice:
+  volumes:
+    - ./webservice/webserver:/src/webserver
+    - ./infrastructure:/src/infrastructure
+  dockerfile: ./Dockerfile.webserver
+  ports:
+    - "0.0.0.0:3003:3000"
+  build: ./webservice

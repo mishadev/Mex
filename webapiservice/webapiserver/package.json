@@ -1,0 +1,20 @@
+{
+  "name": "mex-webapi-server",
+  "author": "Michael Nakonechny",
+  "version": "0.0.1",
+  "description": "MEX",
+  "repository": "https://github.com/PhoboSys/mex",
+  "private": true,
+  "scripts": {
+    "start": "node /src/webapiserver/bin/www"
+  },
+  "dependencies": {
+    "express": "~4.13.3",
+    "body-parser": "~1.14.1",
+    "morgan": "~1.6.1",
+    "compression": "~1.6.0",
+
+    "debug": "~2.0.0",
+    "lodash": "~3.10.1"
+  }
+}

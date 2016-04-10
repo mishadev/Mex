@@ -1,0 +1,22 @@
+.header {
+  @include flex(1 50px);
+  @include display(flex);
+  @include justify-content(space-between);
+  @include align-items(center);
+
+  background: red;
+
+  %header-item {
+    @include flex(0 1 auto);
+  }
+
+  .navigation {
+    @extend %header-item;
+  }
+  .logo {
+    @extend %header-item;
+  }
+  .socials {
+    @extend %header-item;
+  }
+}
