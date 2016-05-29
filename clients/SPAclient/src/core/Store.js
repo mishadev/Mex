@@ -44,7 +44,7 @@ function Store(options) {
         var path = _.initial(arguments);
         var value = _.last(arguments);
 
-        if (_.any(path)) {
+        if (_.some(path)) {
             _state = _state || {};
             _.set(_state, path, value);
         } else {

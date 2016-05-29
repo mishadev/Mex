@@ -9,16 +9,26 @@ var React = require("react");
 var Component = require("../core/Component");
 
 var Header = require("./header/Header.react");
+var RouteStore = require("../stores/RouteStore");
 
-var Application = Component.Create({
+var Router = require("../routing/Router");
+
+var Application = Component.Create(RouteStore, {
     getState: function() {
-        return {};
+        return {
+            route: RouteStore.get("route")
+        };
+    },
+
+    componentDidMount: function(argument) {
+        Router.init();
     },
 
     render: function() {
         return (<div className="main">
             <Header />
             <div className="view">
+                {this.state && this.state.route && <this.state.route.handler />}
             </div>
         </div>);
     }

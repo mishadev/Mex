@@ -11,10 +11,12 @@
   "dependencies": {
     "classnames": "2.2.1",
     "crossroads": "0.12.2",
+    "history": "3.0.0",
+    "hasher": "1.2.0",
     "flux": "2.1.1",
-    "lodash": "3.8.0",
+    "lodash": "4.11.1",
     "react": "0.13.1",
-    "qwest": "2.2.4"
+    "qwest": "4.3.2"
   },
   "devDependencies": {
     "bourbon": "~4.2.6",

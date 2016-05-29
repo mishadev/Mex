@@ -12,7 +12,9 @@ fi
 
 # default behaviour is to launch npm
 if [[ -z ${1} ]]; then
+  echo "========================================================"
   echo "Starting webapi server..."
+  echo "========================================================"
   exec npm start ${EXTRA_ARGS}
 else
   exec "$@"

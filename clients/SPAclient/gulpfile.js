@@ -21,7 +21,7 @@ var del = require('del');
 var merge = require('merge-stream');
 require('harmonize')();
 
-var Output = '../../webservice/webserver/assets/';
+var Output = '/JSOutput/';
 var JavaScriptOutput = path.join(Output, 'js');
 var StyleSheetsOutput = path.join(Output, 'css');
 

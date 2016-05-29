@@ -18,18 +18,18 @@ var Convention = require("./Convention");
 function Command(name) {
     Validation.IsTypeOf(name, 'string');
 
-    var query = { name: name, args: _.rest(arguments) };
-    _dispatcher.dispatch(query);
+    var command = { name: name, args: _.drop(arguments) };
+    _dispatcher.dispatch(command);
 
     var method = ApiWebClient[name];
     if(!_.isFunction(method)) return;
 
-    method.apply(ApiWebClient, query.args)
+    method.apply(ApiWebClient, command.args)
         .then(function(xhr, response) {
-            _dispatcher.dispatch(_.extend({}, query, { name: Convention.Success(name), response: response }));
+            _dispatcher.dispatch(_.extend({}, command, { name: Convention.Success(name), response: response }));
         })
         .catch(function(xhr, response, error) {
-            _dispatcher.dispatch(_.extend({}, query, { name: Convention.Fails(name), response: response, error: error }));
+            _dispatcher.dispatch(_.extend({}, command, { name: Convention.Fails(name), response: response, error: error }));
         });
 }
 

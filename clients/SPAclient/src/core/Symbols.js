@@ -3,10 +3,8 @@
 var _ = require("lodash");
 
 var Symbols = [
-    "CreateUser",
-
-    "UserExists",
-    "GetUserToken"
+    "ChangeRoute",
+    "GetCategories"
 ];
 
 module.exports = _.mapKeys(Symbols, _.indentity);

@@ -81,7 +81,7 @@ function _create(validator) {
 
         if(_.isArray(properties)) {
             var target = _.first(arguments);
-            var params = _.rest(_.initial(arguments));
+            var params = _.drop(_.initial(arguments));
             _.each(properties, function(property) {
                 var value = _getProperty(target, property);
 

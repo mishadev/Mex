@@ -15,6 +15,13 @@ webapiservice:
   # links:
   #   - store
 
+builder:
+  volumes:
+    - ./clients/SPAclient:/src
+    - ./webservice/webserver/assets:/JSOutput
+  dockerfile: ./Dockerfile.SPAclient
+  build: ./clients
+
 webservice:
   volumes:
     - ./webservice/webserver:/src/webserver

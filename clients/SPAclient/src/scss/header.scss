@@ -1,22 +1,84 @@
-.header {
-  @include flex(1 50px);
+.header-container {
   @include display(flex);
-  @include justify-content(space-between);
-  @include align-items(center);
+  @include flex-direction(column);
+  @include align-items(stretch);
 
-  background: red;
+  .header {
+    @include flex(1 50px);
+    @include display(flex);
+    @include justify-content(space-between);
+    @include align-items(center);
 
-  %header-item {
-    @include flex(0 1 auto);
+    background: red;
+
+    %header-item {
+      @include flex(0 1 auto);
+    }
+
+    .navigation {
+      @extend %header-item;
+    }
+    .logo {
+      @extend %header-item;
+    }
+    .socials {
+      @extend %header-item;
+      @include display(flex);
+      @include align-items(center);
+      overflow: hidden;
+      margin: 0 20px;
+
+      a {
+        text-indent: -999px;
+        margin: 0 5px;
+
+        &.facebook {
+          &:before {
+            background: url('/images/socials.png') no-repeat 0 0;
+            background-size: 20px 144px;
+          }
+        }
+
+        &.twitter {
+          &:before {
+            background: url('/images/socials.png') no-repeat 0 -32px;
+            background-size: 20px 144px;
+          }
+        }
+
+        &.instagram {
+          &:before {
+            background: url('/images/socials.png') no-repeat 0 -64px;
+            background-size: 20px 144px;
+          }
+        }
+
+        &.youtube {
+          &:before {
+            background: url('/images/socials.png') no-repeat 0 -96px;
+            background-size: 20px 144px;
+          }
+        }
+
+        &:before {
+          @include size(22px 18px);
+
+          background-size: 20px 144px;
+          content: '';
+          float: left;
+        }
+      }
+    }
   }
 
-  .navigation {
-    @extend %header-item;
-  }
-  .logo {
-    @extend %header-item;
-  }
-  .socials {
-    @extend %header-item;
+  .categories {
+    @include flex(1 48px);
+    overflow: hidden;
+
+    .category {
+      display: block;
+      float: left;
+      padding: 15px 20px;
+    }
   }
 }

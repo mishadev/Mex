@@ -7,9 +7,8 @@ var React = require("react");
 
 var Store = require("./Store");
 
-var RouteStore = require("../stores/RouteStore");
-
 var Validation = require("../utils/Validation");
+var RouteStore = require("../stores/RouteStore");
 
 var _empty = _.partial(_.identity, undefined);
 
@@ -20,7 +19,7 @@ function Component(component, stores) {
     Validation.IsArrayOfInstances(stores, Store);
     var _stores = stores;
 
-    this.route = _.bind(RouteStore.get, RouteStore, "route");
+    this.route = function() { return RouteStore.get("route"); }
     this.css = classnames;
 
     this._base = function(method, params) {
@@ -28,24 +27,26 @@ function Component(component, stores) {
     };
 
     if (!_.isEmpty(_stores)) {
-        _stores = _.union(_stores, [RouteStore]);
+        _stores = _.union(_stores);
 
         this.getInitialState = function() {
             return this._base("getInitialState") || this.getState();
         };
 
         this.componentDidMount = function() {
+            for (var idx in _stores) {
+                _stores[idx].on(this._onChange);
+            }
             this._base("componentDidMount");
-
-            _.invoke(_stores, "on", this._onChange);
 
             this.componentDidUpdate();
         };
 
         this.componentWillUnmount = function() {
             this._base("componentWillUnmount");
-
-            _.invoke(_stores, "off", this._onChange);
+            for (var idx in _stores) {
+                _stores[idx].off(this._onChange);
+            }
         };
 
         this.componentDidUpdate = function() {
@@ -69,6 +70,10 @@ function Component(component, stores) {
 
             return !_.isEqual(nextProp, this.props) || !_.isEqual(nextState, this.state);
         };
+    }
+
+    this.isChanged = function isChanged(obj1, obj2, prop) {
+        return !_.isEqual(_.get(obj1, prop), _.get(obj2, prop));
     }
 
     //add if not exists;

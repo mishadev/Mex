@@ -21,7 +21,7 @@ function Query(name) {
     var method = ViewWebClient[name];
     if(!_.isFunction(method)) return;
 
-    var query = { name: name, args: _.rest(arguments) };
+    var query = { name: name, args: _.drop(arguments) };
     var key = JSON.stringify(query);
     if(_.has(_inprogress, key)) return;
     _inprogress[key] = null;
